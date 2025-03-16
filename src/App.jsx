@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar.jsx'
-import ChessBackdrop from './components/ChessBackdrop.jsx'
+import CanvasComponent from './components/CanvasComponent.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -9,7 +9,8 @@ function App() {
   return (
     <>
       <Navbar />
-      <ChessBackdrop />
+      <CanvasComponent />
+      {/* <p>asdasd</p> */}
     </>
   )
 }
