@@ -4,5 +4,6 @@
     position: relative;
     top: 100vh;
     left: 0;
-
+    padding-left: 10em;
+    padding-right: 10em;
 }

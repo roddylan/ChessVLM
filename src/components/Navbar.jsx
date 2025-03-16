@@ -5,8 +5,8 @@ function Navbar() {
         <nav id="main-nav">
             <h3 id="nav-title">CHESSvLM</h3>
             <ul>
-                <li>Source</li>
-                <li>Guide</li>
+                <li><a href="#" className='nav-btn'>Source</a></li>
+                <li><a href="#" className='nav-btn'>Guide</a></li>
             </ul>
         </nav>
     )

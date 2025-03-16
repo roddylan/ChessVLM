@@ -37,6 +37,7 @@ export default function CanvasComponent() {
                 bgColor="#101010"
                 characters="  .:-+*=%@#"
                 invert
+                renderIndex={1}
             />
         </Canvas>
     </div>)

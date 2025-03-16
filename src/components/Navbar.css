@@ -46,6 +46,20 @@ nav > ul {
 
 nav li {
     font-size: 1.25rem;
-    margin-left: 2em;
+    margin-left: 4em;
     font-weight: 500;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-btn {
+    padding: .25em;
+}
+
+.nav-btn:hover {
+    color: #101010;
+    background-color: white;
 }
