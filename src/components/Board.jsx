@@ -1,8 +1,14 @@
-export function Board() {
+import { Chessboard } from "react-chessboard";
+import { useState } from "react";
+import { Chess } from "chess.js";
+
+
+export default function Board() {
     const [game, setGame] = useState(new Chess());
     const [moveFrom, setMoveFrom] = useState("");
     
-    const [moveTo, setMoveTo] = useState<Square | null>(null);
+    // const [moveTo, setMoveTo] = useState<Square | null>(null);
+    const [moveTo, setMoveTo] = useState(null);
 
     const [showPromotionDialog, setShowPromotionDialog] = useState(false);
     const [rightClickedSquares, setRightClickedSquares] = useState({});
@@ -46,20 +52,20 @@ export function Board() {
         return true;
     }
 
-    function makeRandomMove() {
-        // TODO: change to get move from llm
+    // function makeRandomMove() {
+    //     // TODO: change to get move from llm
 
-        const possibleMoves = game.moves();
+    //     const possibleMoves = game.moves();
 
-        // end if over
-        if (game.game_over() || game.in_draw() || possibleMoves.length === 0) return;
+    //     // end if over
+    //     if (game.isGameOver() || game.isStalemate() || possibleMoves.length === 0) return;
 
-        const randomIndex = Math.floor(Math.random() * possibleMoves.length);
+    //     const randomIndex = Math.floor(Math.random() * possibleMoves.length);
 
-        safeGameMutate(game => {
-            game.move(possibleMoves[randomIndex]);
-        });
-    }
+    //     safeGameMutate(game => {
+    //         game.move(possibleMoves[randomIndex]);
+    //     });
+    // }
 
     function onSquareClick(square) {
         setRightClickedSquares({});
@@ -101,9 +107,7 @@ export function Board() {
             }
 
             // normal move
-            const gameCopy = {
-                ...game
-            };
+            const gameCopy = new Chess(game.fen());
 
             const move = gameCopy.move({
                 from: moveFrom,
@@ -117,12 +121,11 @@ export function Board() {
                 if (hasMoveOptions) setMoveFrom(square);
                 return;
             }
-
             setGame(gameCopy);
-            setTimeout(() => {
-                makeRandomMove 
-                // TODO: replace with llm, probably separate this function
-            }, 300);
+            // setTimeout(() => {
+            //     makeRandomMove 
+            //     // TODO: replace with llm, probably separate this function
+            // }, 300);
             setMoveTo(null)
             setOptionSquares({});
             return;
@@ -132,20 +135,55 @@ export function Board() {
     function onPromotionPieceSelect(piece) {
         // no piece passed -> cancel dialog; reset
         if (piece) {
-            const gameCopy = {
-                ...game
-            };
+            // const gameCopy = {
+            //     ...game
+            // };
+            const gameCopy = new Chess(game.fen());
+
             gameCopy.move({
                 from: moveFrom,
                 to: moveTo,
                 promotion: piece[1].toLowerCase() ?? "q"
             });
             setGame(gameCopy);
-            setTimeout(makeRandomMove, 300);
+            // setTimeout(makeRandomMove, 300);
         }
         setMoveFrom("");
         setMoveTo(null);
-        
+        setShowPromotionDialog(false);
+        setOptionSquares({});
+        return true;
     }
+
+    function onSquareRightClick(square) {
+        const color = "rgb(0, 0, 255, 0.4)";
+        setRightClickedSquares({
+            ...rightClickedSquares,
+            [square]: rightClickedSquares[square] && rightClickedSquares[square].backgroundColor === color ? undefined : {
+                backgroundColor: color
+            }
+        });
+    }
+
+    return (
+        <>
+        <Chessboard id="cvl-board" 
+        customSquareStyles={{
+            ...moveSquares,
+            ...optionSquares,
+            ...rightClickedSquares
+        }}
+        promotionToSquare={moveTo}
+        showPromotionDialog={showPromotionDialog}
+        animationDuration={200}
+        arePiecesDraggable={false}
+        position={game.fen()}
+        onSquareClick={onSquareClick}
+        onSquareRightClick={onSquareRightClick}
+        onPromotionPieceSelect={onPromotionPieceSelect}
+        />
+        
+        </>
+    )
 }
 
