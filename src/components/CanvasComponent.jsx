@@ -29,8 +29,8 @@ export default function CanvasComponent() {
             {/* <Environment preset="city" background blur={1} /> */}
             <ChessPiece src='/ChessVLM/pawn.glb' off={0} name="Pawn" rotation={[0.3, Math.PI / 1.6, 0]} position={[0.720, 2.485, 0]}/>
             <ChessPiece src='/ChessVLM/rook.glb' off={0} name="Rook" rotation={[0.3, Math.PI / 2, degToRad(-46.66)]} position={[2.204, 1.525, 0.069]}/>
-            {/* <ChessPiece src='/ChessVLM/king.glb' off={0} name="King" rotation={[0.3, Math.PI / 1.6, degToRad(-3.50)]} position={[-0.638, 1.818, 0]}/> */}
-            <ChessPiece src='/ChessVLM/knight.glb' off={0} name="Knight" rotation={[0.3, Math.PI / 1.6, degToRad(-3.50)]} position={[-0.638, 1.818, 0]}/>
+            <ChessPiece src='/ChessVLM/king.glb' off={0} name="King" rotation={[0.3, Math.PI / 1.6, degToRad(-3.50)]} position={[-0.638, 1.818, 0]}/>
+            {/* <ChessPiece src='/ChessVLM/knight.glb' off={0} name="Knight" rotation={[0.3, Math.PI / 1.6, degToRad(-3.50)]} position={[-0.638, 1.818, 0]}/> */}
             
             <AsciiRenderer
                 fgColor="white"
