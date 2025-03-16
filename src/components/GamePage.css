@@ -9,9 +9,30 @@
     margin-top: 10em;
 }
 
+#gamepage {
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2.5em;
+    padding-right: 2.5em;
+}
+
 
 #main-content {
     display: flex;
     top: 0;
     left: 0;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+#cvl-board-div {
+    align-content: center;
+    width: 35vw;
+}
+
+.main-content-title {
+    margin-top: 0;
 }
