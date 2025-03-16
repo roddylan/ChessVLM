@@ -4,6 +4,14 @@
     position: relative;
     top: 100vh;
     left: 0;
-    padding-left: 10em;
-    padding-right: 10em;
+    padding-left: var(--page-pad);
+    padding-right: var(--page-pad);
+    margin-top: 10em;
+}
+
+
+#main-content {
+    display: flex;
+    top: 0;
+    left: 0;
 }

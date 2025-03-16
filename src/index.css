@@ -20,6 +20,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --header-margin: calc(max(calc((100% - 80rem) / 2), calc(5rem/3)) - 20px)
+  --header-margin: calc(max(calc((100% - 80rem) / 2), calc(5rem/3)) - 20px);
+  --page-pad: calc(max(calc((100% - 80rem) / 2) + 30px, calc(5rem/3)) + 10px);
 }
 

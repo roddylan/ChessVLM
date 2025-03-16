@@ -11,6 +11,7 @@ function App() {
     <>
       <Navbar />
       <CanvasComponent />
+      {/* TODO: add chevron arrow to bottom (scroll indicator) */}
       <GamePage />
     </>
   )
