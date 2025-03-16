@@ -1,0 +1,32 @@
+nav {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: row;
+    /* width: 10hw; */
+    height: fit-content;
+    background-color: black;
+    padding-left: 2em;
+    padding-right: 2em;
+    justify-content: space-between;
+}
+nav * {
+    font-weight: 400;
+}
+
+#nav-title {
+    align-items: center;
+    font-size: 2.5rem;
+    /* flex-grow: 5; */
+}
+
+nav > ul {
+    /* flex-grow: 1; */
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+nav li {
+    font-size: 1.5rem;
+    margin-left: 2em;
+}
