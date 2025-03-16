@@ -10,7 +10,7 @@
 }
 
 #gamepage {
-    background-color: black;
+    /* background-color: black; */
     display: flex;
     justify-content: space-between;
     padding-left: 2.5em;
@@ -35,4 +35,16 @@
 
 .main-content-title {
     margin-top: 0;
+}
+
+.cvl-board-overlay {
+    z-index: 5;
+    position: absolute;
+    display: flex;
+    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #303030;
 }
