@@ -33,6 +33,17 @@ nav * {
 
 #nav-title {
     align-items: center;
+    display: flex;
+}
+
+#logo {
+    height: 1.75rem;
+    align-items: center;
+    padding-bottom: .25em;
+}
+
+#nav-title h3 {
+    align-items: center;
     font-size: 1.75rem;
     /* flex-grow: 5; */
 }
