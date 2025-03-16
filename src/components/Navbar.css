@@ -26,6 +26,7 @@ nav {
     justify-content: space-between;
     border-radius: 10px;
 }
+
 nav * {
     font-weight: 700;
     line-height: .25;
