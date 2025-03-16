@@ -39,6 +39,8 @@ nav * {
 #logo {
     height: 1.75rem;
     align-items: center;
+    margin: 0;
+    /* vertical-align: middle; */
     padding-bottom: .25em;
 }
 
