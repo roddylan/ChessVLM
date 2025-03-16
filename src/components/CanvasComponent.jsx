@@ -35,7 +35,8 @@ export default function CanvasComponent() {
                 fgColor="white"
                 // bgColor="transparent"
                 bgColor="#101010"
-                characters="  .:-+*=%@#"
+                // characters="  .:-+*=%@#"
+                characters=" .:-+*=%@#"
                 invert
                 renderIndex={1}
             />
