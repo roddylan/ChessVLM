@@ -19,5 +19,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --header-margin: calc(max(calc((100% - 80rem) / 2), calc(5rem/3)) - 20px)
 }
 

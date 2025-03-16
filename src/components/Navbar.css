@@ -1,10 +1,16 @@
 nav {
-    position: relative;
-    z-index: 2;
+    position: fixed;
+    top: 0;
+    /* left: 0;
+    right: 0; */
+    left: var(--header-margin);
+    right: var(--header-margin);
+    z-index: 1000;
     margin-top: 2em;
     display: flex;
     flex-direction: row;
     /* width: 10hw; */
+    width: 100;
     height: fit-content;
     /* background-color: black; */
     /* background: rgb(165,239,255);
@@ -18,9 +24,9 @@ nav {
     padding-left: 2em;
     padding-right: 2em;
     justify-content: space-between;
+    border-radius: 10px;
 }
 nav * {
-    z-index: auto;
     font-weight: 700;
     line-height: .25;
 }
