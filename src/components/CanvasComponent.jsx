@@ -7,7 +7,7 @@ import { degToRad } from "three/src/math/MathUtils.js";
 export default function CanvasComponent() {
     return (<div id="canv">
         <Canvas shadows camera={{
-            position: [ 0.860, 1.111, -3.485 ],
+            position: [ 0.3, 2.111, -3.485 ],
             rotation: [Math.PI, 0, Math.PI],
             fov: 50,
             near: 0.01,
@@ -27,9 +27,9 @@ export default function CanvasComponent() {
                 castShadow
             />
             {/* <Environment preset="city" background blur={1} /> */}
-            <ChessPiece src='/pawn.glb' off={0} name="Pawn" rotation={[0.3, Math.PI / 1.6, 0]} position={[0.720, 0.785, 0]}/>
-            <ChessPiece src='/rook.glb' off={0} name="Rook" rotation={[0.3, Math.PI / 2, degToRad(-46.66)]} position={[1.604, 1.525, 0.069]}/>
-            <ChessPiece src='/king.glb' off={0} name="King" rotation={[0.3, Math.PI / 1.6, degToRad(-3.50)]} position={[-0.138, 1.818, 0]}/>
+            <ChessPiece src='/pawn.glb' off={0} name="Pawn" rotation={[0.3, Math.PI / 1.6, 0]} position={[0.720, 2.485, 0]}/>
+            <ChessPiece src='/rook.glb' off={0} name="Rook" rotation={[0.3, Math.PI / 2, degToRad(-46.66)]} position={[2.204, 1.525, 0.069]}/>
+            <ChessPiece src='/king.glb' off={0} name="King" rotation={[0.3, Math.PI / 1.6, degToRad(-3.50)]} position={[-0.638, 1.818, 0]}/>
             
             <AsciiRenderer
                 fgColor="white"
