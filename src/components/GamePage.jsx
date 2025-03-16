@@ -3,7 +3,7 @@ import './GamePage.css'
 export default function GamePage() {
     return (
         <div className="page">
-            <p>lollllxd</p>
+            <h1>ASODJA</h1>
         </div>
     )
 }
