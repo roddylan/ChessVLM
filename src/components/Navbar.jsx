@@ -8,7 +8,7 @@ function Navbar() {
                 <h3>CHESSvLM</h3>
             </span>
             <ul>
-                <li><a href="#" className='nav-btn'>Source</a></li>
+                <li><a href="https://github.com/roddylan/ChessVLM" className='nav-btn'>Github</a></li>
                 <li><a href="#" className='nav-btn'>Guide</a></li>
             </ul>
         </nav>
