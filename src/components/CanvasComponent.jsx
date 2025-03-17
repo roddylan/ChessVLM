@@ -27,9 +27,9 @@ export default function CanvasComponent() {
                 castShadow
             />
             {/* <Environment preset="city" background blur={1} /> */}
-            <ChessPiece src='/ChessVLM/pawn.glb' off={0} name="Pawn" rotation={[0.3, Math.PI / 1.6, 0]} position={[0.720, 2.485, 0]}/>
-            <ChessPiece src='/ChessVLM/rook.glb' off={0} name="Rook" rotation={[0.3, Math.PI / 2, degToRad(-46.66)]} position={[2.204, 1.525, 0.069]}/>
-            <ChessPiece src='/ChessVLM/king.glb' off={0} name="King" rotation={[0.3, Math.PI / 1.6, degToRad(-3.50)]} position={[-0.638, 1.818, 0]}/>
+            <ChessPiece src='/ChessVLM/pawn.glb' off={2.7} neg={false} name="Pawn" rotation={[0.3, Math.PI / 1.6, 0]} position={[0.720, 2.485, 0]}/>
+            <ChessPiece src='/ChessVLM/rook.glb' off={8.5} neg={false} name="Rook" rotation={[0.3, Math.PI / 2, degToRad(-46.66)]} position={[2.204, 1.525, 0.069]}/>
+            <ChessPiece src='/ChessVLM/king.glb' off={6.3} neg={true} name="King" rotation={[-0.3, Math.PI / 1.6, degToRad(-3.50)]} position={[-0.638, 1.818, 0]}/>
             {/* <ChessPiece src='/ChessVLM/knight.glb' off={0} name="Knight" rotation={[0.3, Math.PI / 1.6, degToRad(-3.50)]} position={[-0.638, 1.818, 0]}/> */}
             
             <AsciiRenderer
@@ -50,9 +50,9 @@ function ChessPiece(props) {
     const ref = useRef();
     const { nodes, materials } = useGLTF( props.src );
     useFrame((state) => {
-        const t = state.clock.getElapsedTime();
-        ref.current.rotation.set(Math.cos(t / 4) / 8, Math.sin(t / 3) / 4, 0.15 + Math.sin(t / 2) / 8);
-        ref.current.position.y = (0.5 + Math.cos(t / 2)) / 7;
+        const t = state.clock.getElapsedTime() + props.off;
+        ref.current.rotation.set(Math.cos(t / 4) / 8, Math.sin(t / 3) / 4, 0.15 + Math.sin(t / 2) / 8) * (-1 * props.neg);
+        ref.current.position.y = (0.01 + Math.cos(t)) / 70;
     })
     materials[""].flatShading = true;
     return (
