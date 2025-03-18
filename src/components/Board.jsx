@@ -52,15 +52,22 @@ export default function Board() {
         return true;
     }
 
-    function onSquareDrag(square) {
+    function onPieceDragBegin(piece, square) {
         setRightClickedSquares({});
+        
 
         if (!moveFrom) {
             const hasMoveOptions = getMoveOptions(square);
             if (hasMoveOptions) {
                 setMoveFrom(square);
             }
+            return;
         }
+    }
+
+    function onPieceDragEnd(piece, square) {
+        // setOptionSquares({});
+        return;
     }
     // function makeRandomMove() {
     //     // TODO: change to get move from llm
@@ -79,7 +86,6 @@ export default function Board() {
 
     function onSquareClick(square) {
         setRightClickedSquares({});
-
         // from square
         if (!moveFrom) {
             const hasMoveOptions = getMoveOptions(square);
@@ -186,12 +192,14 @@ export default function Board() {
         promotionToSquare={moveTo}
         showPromotionDialog={showPromotionDialog}
         animationDuration={200}
+        // arePiecesDraggable={true}
         arePiecesDraggable={false}
         position={game.fen()}
         onSquareClick={onSquareClick}
         onSquareRightClick={onSquareRightClick}
         onPromotionPieceSelect={onPromotionPieceSelect}
-        onSquareDrag={onSquareDrag}
+        // onSquareDrag={onSquareDrag}
+        onPieceDragBegin={onPieceDragBegin}
         />
         
         </>
