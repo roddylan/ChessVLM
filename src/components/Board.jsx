@@ -52,6 +52,16 @@ export default function Board() {
         return true;
     }
 
+    function onSquareDrag(square) {
+        setRightClickedSquares({});
+
+        if (!moveFrom) {
+            const hasMoveOptions = getMoveOptions(square);
+            if (hasMoveOptions) {
+                setMoveFrom(square);
+            }
+        }
+    }
     // function makeRandomMove() {
     //     // TODO: change to get move from llm
 
@@ -81,7 +91,7 @@ export default function Board() {
 
         // to square
         if (!moveTo) {
-            // check if valid before showind dialog
+            // check if valid before showing dialog
             const moves = game.moves({
                 moveFrom,
                 verbose: true
@@ -181,6 +191,7 @@ export default function Board() {
         onSquareClick={onSquareClick}
         onSquareRightClick={onSquareRightClick}
         onPromotionPieceSelect={onPromotionPieceSelect}
+        onSquareDrag={onSquareDrag}
         />
         
         </>
