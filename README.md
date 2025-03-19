@@ -25,4 +25,4 @@ Libraries used:
 - react-chessboard
 - chess.js
 
-Chess piece assets from ['SketchFab'](https://sketchfab.com/3d-models/world-championship-chess-set-79663d05f2064c26b63735ac84917e0c)
+Chess piece assets from [SketchFab](https://sketchfab.com/3d-models/world-championship-chess-set-79663d05f2064c26b63735ac84917e0c)
