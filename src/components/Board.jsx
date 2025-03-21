@@ -6,7 +6,7 @@ import { WebSocket } from "vite";
 export default function Board(props) {
     const [game, setGame] = useState(new Chess());
     const [moveFrom, setMoveFrom] = useState("");
-    const [socket, setSocket] = useState(new WebSocket("ws://"))
+    // const [socket, setSocket] = useState(new WebSocket("ws://"))
     
     // const [moveTo, setMoveTo] = useState<Square | null>(null);
     const [moveTo, setMoveTo] = useState(null);
@@ -16,11 +16,11 @@ export default function Board(props) {
     const [moveSquares, setMoveSquares] = useState({});
     const [optionSquares, setOptionSquares] = useState({});
 
-    function playLLM() {
-        fen = game.fen();
+    // function playLLM() {
+    //     fen = game.fen();
         
 
-    }
+    // }
 
 
     function safeGameMutate(modify) {
