@@ -1,11 +1,12 @@
 import { Chessboard } from "react-chessboard";
 import { useState } from "react";
 import { Chess } from "chess.js";
+import { WebSocket } from "vite";
 
-
-export default function Board() {
+export default function Board(props) {
     const [game, setGame] = useState(new Chess());
     const [moveFrom, setMoveFrom] = useState("");
+    const [socket, setSocket] = useState(new WebSocket("ws://"))
     
     // const [moveTo, setMoveTo] = useState<Square | null>(null);
     const [moveTo, setMoveTo] = useState(null);
@@ -14,6 +15,13 @@ export default function Board() {
     const [rightClickedSquares, setRightClickedSquares] = useState({});
     const [moveSquares, setMoveSquares] = useState({});
     const [optionSquares, setOptionSquares] = useState({});
+
+    function playLLM() {
+        fen = game.fen();
+        
+
+    }
+
 
     function safeGameMutate(modify) {
         setGame(g => {
@@ -85,6 +93,7 @@ export default function Board() {
     // }
 
     function onSquareClick(square) {
+        console.log(props.apiKey)
         setRightClickedSquares({});
         // from square
         if (!moveFrom) {
