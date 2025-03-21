@@ -11,7 +11,19 @@ export default function Board(props) {
     const OPPONENT = 'b';
     
     socket.onmessage = (event) => {
-        console.log(JSON.parse(event.data));
+        console.log("SOCKET ONMSG")
+        const resp = JSON.parse(event.data)
+        console.log("parse resp")
+        if (resp.iserr) {
+            console.error(`ERROR: ${resp.err}`)
+            return;
+        }
+        console.log(`Bot ${resp.move}`);
+        game.load(resp.fen, {skipValidation: true});
+        console.log(`rec fen=${resp.fen}`)
+        console.log(`new fen=${game.fen()}`)
+        // Board.position = resp.fen;
+
     }
     
     // const [moveTo, setMoveTo] = useState<Square | null>(null);
@@ -21,6 +33,8 @@ export default function Board(props) {
     const [rightClickedSquares, setRightClickedSquares] = useState({});
     const [moveSquares, setMoveSquares] = useState({});
     const [optionSquares, setOptionSquares] = useState({});
+    
+    useEffect(playLLM, [game]);
 
     function playLLM() {
         console.log("PLAYLLM")
@@ -30,16 +44,13 @@ export default function Board(props) {
             return;
         }
         
-        fen = game.fen();
-        msg = {
+        const fen = game.fen();
+        const msg = {
             "fen": fen,
             "player": PLAYER,
-            "opponent": OPPONENT,
-            "api": ""
+            "opponent": OPPONENT
         }
-        console.log(msg);
-        console.log(JSON.stringify(msg));
-
+        console.log("sent")
         socket.send(JSON.stringify(msg));
     }
 
@@ -114,7 +125,7 @@ export default function Board(props) {
     // }
 
     function onSquareClick(square) {
-        console.log(game.turn())
+        console.log(`click_fen=${game.fen()}`)
         if (game.turn() === OPPONENT) {
             return;
         }
