@@ -4,6 +4,7 @@ import { Chess } from "chess.js";
 
 export default function Board(props) {
     const [game, setGame] = useState(new Chess());
+    const [boardPosition, setBoardPosition] = useState(game.fen());
     const [moveFrom, setMoveFrom] = useState("");
     const [socket, setSocket] = useState(new WebSocket("ws://localhost:8000/ws/chess/"));
 
@@ -23,6 +24,7 @@ export default function Board(props) {
         console.log(`rec fen=${resp.fen}`)
         console.log(`new fen=${game.fen()}`)
         // Board.position = resp.fen;
+        setBoardPosition(resp.fen);
 
     }
     
@@ -34,15 +36,19 @@ export default function Board(props) {
     const [moveSquares, setMoveSquares] = useState({});
     const [optionSquares, setOptionSquares] = useState({});
     
-    useEffect(playLLM, [game]);
+    useEffect(() => {
+        playLLM;
+        setBoardPosition(resp.fen);
+    }, [game]);
 
     function playLLM() {
-        console.log("PLAYLLM")
-        console.log(game.turn())
-        console.log("-------")
+        // console.log("PLAYLLM")
+        // console.log(game.turn())
+        // console.log("-------")
         if (game.turn() == PLAYER) {
             return;
         }
+        console.log(`send_fen=${game.fen()}`)
         
         const fen = game.fen();
         const msg = {
@@ -125,7 +131,6 @@ export default function Board(props) {
     // }
 
     function onSquareClick(square) {
-        console.log(`click_fen=${game.fen()}`)
         if (game.turn() === OPPONENT) {
             return;
         }
@@ -136,6 +141,7 @@ export default function Board(props) {
         setRightClickedSquares({});
         // from square
         if (!moveFrom) {
+            console.log("<mf>")
             const hasMoveOptions = getMoveOptions(square);
             if (hasMoveOptions) {
                 setMoveFrom(square);
@@ -145,6 +151,7 @@ export default function Board(props) {
 
         // to square
         if (!moveTo) {
+            console.log("<mt>")
             // check if valid before showing dialog
             const moves = game.moves({
                 moveFrom,
@@ -154,13 +161,14 @@ export default function Board(props) {
 
             // invalid
             if (!foundMove) {
+                console.log("<mtfm>")
                 // check if clicked on new piece
                 const hasMoveOptions = getMoveOptions(square);
                 // if new piece, setmovefrom, ow clear
                 setMoveFrom(hasMoveOptions ? square : "");
                 return;
             }
-
+            console.log("<smtsq>")
             // valid
             setMoveTo(square);
 
@@ -245,7 +253,8 @@ export default function Board(props) {
         animationDuration={200}
         // arePiecesDraggable={true}
         arePiecesDraggable={false}
-        position={game.fen()}
+        // position={game.fen()}
+        position={boardPosition}
         onSquareClick={onSquareClick}
         onSquareRightClick={onSquareRightClick}
         onPromotionPieceSelect={onPromotionPieceSelect}
