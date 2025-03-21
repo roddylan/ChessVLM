@@ -37,8 +37,8 @@ export default function Board(props) {
     const [optionSquares, setOptionSquares] = useState({});
     
     useEffect(() => {
-        playLLM;
-        setBoardPosition(resp.fen);
+        playLLM();
+        setBoardPosition(game.fen());
     }, [game]);
 
     function playLLM() {
