@@ -1,12 +1,18 @@
 import { Chessboard } from "react-chessboard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Chess } from "chess.js";
-// import { WebSocket } from "vite";
 
 export default function Board(props) {
     const [game, setGame] = useState(new Chess());
     const [moveFrom, setMoveFrom] = useState("");
-    // const [socket, setSocket] = useState(new WebSocket("ws://"))
+    const [socket, setSocket] = useState(new WebSocket("ws://localhost:8000/ws/chess/"));
+
+    const PLAYER = 'w';
+    const OPPONENT = 'b';
+    
+    socket.onmessage = (event) => {
+        console.log(JSON.parse(event.data));
+    }
     
     // const [moveTo, setMoveTo] = useState<Square | null>(null);
     const [moveTo, setMoveTo] = useState(null);
@@ -16,11 +22,26 @@ export default function Board(props) {
     const [moveSquares, setMoveSquares] = useState({});
     const [optionSquares, setOptionSquares] = useState({});
 
-    // function playLLM() {
-    //     fen = game.fen();
+    function playLLM() {
+        console.log("PLAYLLM")
+        console.log(game.turn())
+        console.log("-------")
+        if (game.turn() == PLAYER) {
+            return;
+        }
         
+        fen = game.fen();
+        msg = {
+            "fen": fen,
+            "player": PLAYER,
+            "opponent": OPPONENT,
+            "api": ""
+        }
+        console.log(msg);
+        console.log(JSON.stringify(msg));
 
-    // }
+        socket.send(JSON.stringify(msg));
+    }
 
 
     function safeGameMutate(modify) {
@@ -93,7 +114,14 @@ export default function Board(props) {
     // }
 
     function onSquareClick(square) {
-        console.log(props.apiKey)
+        console.log(game.turn())
+        if (game.turn() === OPPONENT) {
+            return;
+        }
+        // console.log(props.apiKey)
+        // console.log(socket)
+
+
         setRightClickedSquares({});
         // from square
         if (!moveFrom) {
@@ -146,7 +174,10 @@ export default function Board(props) {
                 if (hasMoveOptions) setMoveFrom(square);
                 return;
             }
+            // setGame(gameCopy);
             setGame(gameCopy);
+            // console.log("move made, turn=" + gameCopy.turn())
+            // console.log("move made, turn=" + game.turn())
             // setTimeout(() => {
             //     makeRandomMove 
             //     // TODO: replace with llm, probably separate this function
