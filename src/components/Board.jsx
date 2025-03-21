@@ -1,7 +1,7 @@
 import { Chessboard } from "react-chessboard";
 import { useState } from "react";
 import { Chess } from "chess.js";
-import { WebSocket } from "vite";
+// import { WebSocket } from "vite";
 
 export default function Board(props) {
     const [game, setGame] = useState(new Chess());
