@@ -26,7 +26,7 @@ export default function Board(props) {
     socket.onmessage = (event) => {
         console.log("SOCKET ONMSG")
         const resp = JSON.parse(event.data)
-        console.log("parse resp")
+        // console.log("parse resp")
         if (resp.iserr) {
             console.error(`ERROR: ${resp.err}`)
             return;
@@ -34,8 +34,8 @@ export default function Board(props) {
         
         logMove(resp.move, resp.fen, true);
         game.load(resp.fen, {skipValidation: true});
-        console.log(`rec fen=${resp.fen}`)
-        console.log(`new fen=${game.fen()}`)
+        // console.log(`rec fen=${resp.fen}`)
+        // console.log(`new fen=${game.fen()}`)
         // Board.position = resp.fen;
         setBoardPosition(resp.fen);
 
@@ -154,7 +154,6 @@ export default function Board(props) {
         setRightClickedSquares({});
         // from square
         if (!moveFrom) {
-            console.log("<mf>")
             const hasMoveOptions = getMoveOptions(square);
             if (hasMoveOptions) {
                 setMoveFrom(square);
