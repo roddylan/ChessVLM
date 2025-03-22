@@ -5,7 +5,7 @@ import { Chess } from "chess.js";
 function logMove(move, fen, turn, bot=false) {
     const liNew = document.createElement("li");
     if (bot) {
-        liNew.textContent = `Bot ${move}`;
+        liNew.textContent = `(${turn}) Bot ${move}`;
     } else {
         liNew.textContent = `(${turn}) Player Move: ${move}`;
         // liNew.textContent = `Player Move: ${move}\nFEN=${fen}`;
