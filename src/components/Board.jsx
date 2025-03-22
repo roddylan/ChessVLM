@@ -11,7 +11,22 @@ function logMove(move, fen, turn, bot=false) {
         // liNew.textContent = `Player Move: ${move}\nFEN=${fen}`;
     }
     document.getElementById("fen-indicator").textContent = `FEN: ${fen}`;
+
+    if (turn === 'b') {
+        liNew.className = "log-alt"
+    }
     
+    document.getElementById("logbox-ul").appendChild(liNew);
+}
+
+function logEnd(cur, mate) {
+    const el = document.createElement("li");
+    if (!mate) {
+        el.textContent("GAME OVER, STALEMATE");
+    } else {
+        const winner = (cur === "w") ? "BLACK" : "WHITE";
+        el.textContent(`GAME OVER, ${winner} WINS`);
+    }
     document.getElementById("logbox-ul").appendChild(liNew);
 
 }
@@ -52,7 +67,11 @@ export default function Board(props) {
     const [optionSquares, setOptionSquares] = useState({});
     
     useEffect(() => {
-        playLLM();
+        if (game.isGameOver()) {
+            logEnd(game.turn(), game.isCheckmate());
+        } else {
+            playLLM();
+        }
         setBoardPosition(game.fen());
     }, [game]);
 

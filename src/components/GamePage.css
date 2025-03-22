@@ -48,14 +48,20 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #303030;
+    /* background-color: #303030; */
+    /* background-color: #505050; */
 }
 
 #logbox {
     flex-grow: 1;
+    /* background-color: #202020; */
     background-color: #202020;
     overflow: scroll;
     max-height: 25vw;
+}
+
+#logbox-ul {
+    padding: 0;
 }
 
 #logbox-ul * {
@@ -63,8 +69,22 @@
     list-style: none;
 }
 
+#logbox-ul li {
+    padding-top: .35em;
+    padding-bottom: .35em;
+    padding-left: 1em;
+    color: #C3C3C3;
+    font-style: italic;
+}
+
 #fen-indicator {
     font-size: .8em;
     font-weight: 500;
     letter-spacing: .05em;
+}
+
+.log-alt {
+    /* background-color: #222222; */
+    /* background-color: #171717; */
+    background-color: #191919;
 }
