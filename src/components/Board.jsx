@@ -5,10 +5,12 @@ import { Chess } from "chess.js";
 function logMove(move, fen, bot=false) {
     const liNew = document.createElement("li");
     if (bot) {
-        liNew.textContent = `Bot ${move}\nFEN=${fen}`;
+        liNew.textContent = `Bot ${move}`;
     } else {
-        liNew.textContent = `Player Move: ${move}\nFEN=${fen}`;
+        liNew.textContent = `Player Move: ${move}`;
+        // liNew.textContent = `Player Move: ${move}\nFEN=${fen}`;
     }
+    document.getElementById("fen-indicator").textContent = `FEN: ${fen}`;
     
     document.getElementById("logbox-ul").appendChild(liNew);
 

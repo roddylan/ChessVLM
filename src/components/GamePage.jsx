@@ -5,7 +5,7 @@ import './GamePage.css'
 import Board from './Board'
 
 
-
+const DEFAULT_POSITION = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
 export default function GamePage() {
     // const [api, setAPI] = useState("");
     // const APIForm = () => {
@@ -42,6 +42,7 @@ export default function GamePage() {
                 </div>
                 <div id="cvl-board-div" className='inactive'>
                     <Board apiKey={api} />
+                    <p id="fen-indicator">FEN: {DEFAULT_POSITION}</p>
                     {/* TODO: gray out when inactive */}
                     {/* <Chessboard id="cvl-board" /> */}
                     {/* <div className='cvl-board-overlay inactive'></div> */}
