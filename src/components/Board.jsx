@@ -143,7 +143,6 @@ export default function Board(props) {
     // }
 
     function onSquareClick(square) {
-        logMove("test", "fen_test")
         if (game.turn() === OPPONENT) {
             return;
         }
@@ -195,6 +194,8 @@ export default function Board(props) {
                 to: square,
                 promotion: "q"
             });
+
+            logMove(square, gameCopy.fen());
 
             // invalid -> setMoveFrom and getMoveOptions
             if (move === null) {
