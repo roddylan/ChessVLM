@@ -164,7 +164,6 @@ export default function Board(props) {
 
         // to square
         if (!moveTo) {
-            console.log("<mt>")
             // check if valid before showing dialog
             const moves = game.moves({
                 moveFrom,
@@ -174,14 +173,12 @@ export default function Board(props) {
 
             // invalid
             if (!foundMove) {
-                console.log("<mtfm>")
                 // check if clicked on new piece
                 const hasMoveOptions = getMoveOptions(square);
                 // if new piece, setmovefrom, ow clear
                 setMoveFrom(hasMoveOptions ? square : "");
                 return;
             }
-            console.log("<smtsq>")
             // valid
             setMoveTo(square);
 
