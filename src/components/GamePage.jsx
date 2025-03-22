@@ -34,6 +34,10 @@ export default function GamePage() {
             <main id="gamepage">
                 <div id="main-content">
                     <h1 className='main-content-title'>Chess Game</h1>
+                    <div id="logbox">
+                        <ul id="logbox-ul">
+                        </ul>
+                    </div>
                     {/* <APIForm /> */}
                 </div>
                 <div id="cvl-board-div" className='inactive'>
