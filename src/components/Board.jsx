@@ -2,12 +2,12 @@ import { Chessboard } from "react-chessboard";
 import { useState, useEffect } from "react";
 import { Chess } from "chess.js";
 
-function logMove(move, fen, bot=false) {
+function logMove(move, fen, turn, bot=false) {
     const liNew = document.createElement("li");
     if (bot) {
         liNew.textContent = `Bot ${move}`;
     } else {
-        liNew.textContent = `Player Move: ${move}`;
+        liNew.textContent = `(${turn}) Player Move: ${move}`;
         // liNew.textContent = `Player Move: ${move}\nFEN=${fen}`;
     }
     document.getElementById("fen-indicator").textContent = `FEN: ${fen}`;
@@ -34,7 +34,7 @@ export default function Board(props) {
             return;
         }
         
-        logMove(resp.move, resp.fen, true);
+        logMove(resp.move, resp.fen, game.turn(), true);
         game.load(resp.fen, {skipValidation: true});
         // console.log(`rec fen=${resp.fen}`)
         // console.log(`new fen=${game.fen()}`)
@@ -197,7 +197,7 @@ export default function Board(props) {
                 promotion: "q"
             });
 
-            logMove(square, gameCopy.fen());
+            logMove(square, gameCopy.fen(), game.turn());
 
             // invalid -> setMoveFrom and getMoveOptions
             if (move === null) {
