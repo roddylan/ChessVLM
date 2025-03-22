@@ -2,6 +2,18 @@ import { Chessboard } from "react-chessboard";
 import { useState, useEffect } from "react";
 import { Chess } from "chess.js";
 
+function logMove(move, fen, bot=false) {
+    const liNew = document.createElement("li");
+    if (bot) {
+        liNew.textContent = `Bot ${move}\nFEN=${fen}`;
+    } else {
+        liNew.textContent = `Player Move: ${move}\nFEN=${fen}`;
+    }
+    
+    document.getElementById("logbox-ul").appendChild(liNew);
+
+}
+
 export default function Board(props) {
     const [game, setGame] = useState(new Chess());
     const [boardPosition, setBoardPosition] = useState(game.fen());
@@ -19,7 +31,8 @@ export default function Board(props) {
             console.error(`ERROR: ${resp.err}`)
             return;
         }
-        console.log(`Bot ${resp.move}`);
+        
+        logMove(resp.move, resp.fen, true);
         game.load(resp.fen, {skipValidation: true});
         console.log(`rec fen=${resp.fen}`)
         console.log(`new fen=${game.fen()}`)
@@ -56,7 +69,6 @@ export default function Board(props) {
             "player": PLAYER,
             "opponent": OPPONENT
         }
-        console.log("sent")
         socket.send(JSON.stringify(msg));
     }
 
@@ -131,6 +143,7 @@ export default function Board(props) {
     // }
 
     function onSquareClick(square) {
+        logMove("test", "fen_test")
         if (game.turn() === OPPONENT) {
             return;
         }
