@@ -19,13 +19,23 @@ function logMove(move, fen, turn, bot=false) {
     document.getElementById("logbox-ul").appendChild(liNew);
 }
 
-function logEnd(cur, mate) {
+function logEnd(cur, mate, reg=true, dk=false, err="") {
     const el = document.createElement("li");
-    if (!mate) {
-        el.textContent("GAME OVER, STALEMATE");
+    const winner = (cur === "w") ? "BLACK" : "WHITE";
+    const loser =  (cur === "w") ? "WHITE" : "BLACK";
+    if (reg) {
+        if (!mate) {
+            el.textContent("GAME OVER, STALEMATE");
+        } else {
+            el.textContent(`GAME OVER, ${winner} WINS`);
+        }
     } else {
-        const winner = (cur === "w") ? "BLACK" : "WHITE";
-        el.textContent(`GAME OVER, ${winner} WINS`);
+        if (dk) {
+            el.textContent(`DING DONG THE ${loser} KING IS DEAD!! ${winner} WINS!!`)
+        } else {
+            // el.textContent(`INVALID POSITION`)
+            el.textContent(`${err}`)
+        }
     }
     document.getElementById("logbox-ul").appendChild(liNew);
 
@@ -38,8 +48,8 @@ export default function Board(props) {
     const [game, setGame] = useState(new Chess());
     const [boardPosition, setBoardPosition] = useState(game.fen());
     const [moveFrom, setMoveFrom] = useState("");
-    // const [socket, setSocket] = useState(new WebSocket("ws://localhost:8000/ws/chess/"));
-    const [socket, setSocket] = useState(new WebSocket("wss://chessvlm-backend-748375050331.us-central1.run.app/ws/chess/"));
+    const [socket, setSocket] = useState(new WebSocket("ws://localhost:8000/ws/chess/"));
+    // const [socket, setSocket] = useState(new WebSocket("wss://chessvlm-backend-748375050331.us-central1.run.app/ws/chess/"));
 
     // socket.onopen = () => {
     //     console.log("CONNECTED TO WEBSOCKET");
@@ -77,6 +87,11 @@ export default function Board(props) {
     const [optionSquares, setOptionSquares] = useState({});
     
     useEffect(() => {
+        // try {
+        //     game.validateFen();
+        // } catch(err) {
+        //     console.log(err)
+        // }
         if (game.isGameOver()) {
             logEnd(game.turn(), game.isCheckmate());
         } else {
@@ -174,7 +189,7 @@ export default function Board(props) {
     // }
 
     function onSquareClick(square) {
-        console.log(socket)
+        console.log(game)
         // console.log(socket)
         if (game.turn() === OPPONENT) {
             return;
