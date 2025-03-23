@@ -32,17 +32,26 @@ function logEnd(cur, mate) {
 }
 
 export default function Board(props) {
+    const PLAYER = 'w';
+    const OPPONENT = 'b';
+        
     const [game, setGame] = useState(new Chess());
     const [boardPosition, setBoardPosition] = useState(game.fen());
     const [moveFrom, setMoveFrom] = useState("");
     // const [socket, setSocket] = useState(new WebSocket("ws://localhost:8000/ws/chess/"));
     const [socket, setSocket] = useState(new WebSocket("wss://chessvlm-backend-748375050331.us-central1.run.app/ws/chess/"));
 
-    const PLAYER = 'w';
-    const OPPONENT = 'b';
-    
+    // socket.onopen = () => {
+    //     console.log("CONNECTED TO WEBSOCKET");
+    // }
+
+    // socket.onclose = () => {
+    //     console.log("WEBSOCKET CLOSED");
+    // }
+
     socket.onmessage = (event) => {
-        console.log("SOCKET ONMSG")
+        console.log("SOCKET RECEIVED MSG")
+        // console.log("SOCKET ONMSG")
         const resp = JSON.parse(event.data)
         // console.log("parse resp")
         if (resp.iserr) {
@@ -165,6 +174,8 @@ export default function Board(props) {
     // }
 
     function onSquareClick(square) {
+        console.log(socket)
+        // console.log(socket)
         if (game.turn() === OPPONENT) {
             return;
         }
