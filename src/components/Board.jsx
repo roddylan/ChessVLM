@@ -48,8 +48,8 @@ export default function Board(props) {
     const [game, setGame] = useState(new Chess());
     const [boardPosition, setBoardPosition] = useState(game.fen());
     const [moveFrom, setMoveFrom] = useState("");
-    const [socket, setSocket] = useState(new WebSocket("ws://localhost:8000/ws/chess/"));
-    // const [socket, setSocket] = useState(new WebSocket("wss://chessvlm-backend-748375050331.us-central1.run.app/ws/chess/"));
+    // const [socket, setSocket] = useState(new WebSocket("ws://localhost:8000/ws/chess/"));
+    const [socket, setSocket] = useState(new WebSocket("wss://chessvlm-backend-748375050331.us-central1.run.app/ws/chess/"));
 
     // socket.onopen = () => {
     //     console.log("CONNECTED TO WEBSOCKET");
