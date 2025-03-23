@@ -12,9 +12,10 @@ Currently, two official plugins are available:
 If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project. -->
 # ChessVLM
 **NOTE:** 
-IN ORDER TO PLAY BOT, RUN AND HOST [BACKEND](https://github.com/roddylan/ChessVLM-backend) **LOCALLY**. BACKEND NOT YET HOSTED ANYWHERE, CURRENT GH PAGE OUTDATED. 
+MED/LARGE SCREENS ONLY (haven't adapted styling for mobile). WAIT FOR VITE TO FULLY CONNECT BEFORE DOING ANYTHING, loading screen not implemented yet. Win/game end condition with game validation not implemented. 
 
-Provides frontend (and partial backend) framework for ChessVLM.
+
+Provides frontend (and partial backend) framework for ChessVLM. Backend found [here](https://github.com/roddylan/ChessVLM-backend)
 
 Technologies/Frameworks used:
 - JS, HTML, CSS
