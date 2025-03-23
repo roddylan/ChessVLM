@@ -25,16 +25,16 @@ function logEnd(cur, mate, reg=true, dk=false, err="") {
     const loser =  (cur === "w") ? "WHITE" : "BLACK";
     if (reg) {
         if (!mate) {
-            el.textContent("GAME OVER, STALEMATE");
+            el.textContent = "GAME OVER, STALEMATE";
         } else {
-            el.textContent(`GAME OVER, ${winner} WINS`);
+            el.textContent = `GAME OVER, ${winner} WINS`;
         }
     } else {
         if (dk) {
-            el.textContent(`DING DONG THE ${loser} KING IS DEAD!! ${winner} WINS!!`)
+            el.textContent = `DING DONG THE ${loser} KING IS DEAD!! ${winner} WINS!!`;
         } else {
             // el.textContent(`INVALID POSITION`)
-            el.textContent(`${err}`)
+            el.textContent = `${err}`;
         }
     }
     document.getElementById("logbox-ul").appendChild(liNew);
