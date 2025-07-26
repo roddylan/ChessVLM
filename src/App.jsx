@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar.jsx'
-import CanvasComponent from './components/CanvasComponent.jsx'
+// import CanvasComponent from './components/CanvasComponent.jsx'
 import GamePage from './components/GamePage.jsx'
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <CanvasComponent />
+      {/* <CanvasComponent /> */}
       {/* TODO: add chevron arrow to bottom (scroll indicator) */}
       <GamePage />
     </>

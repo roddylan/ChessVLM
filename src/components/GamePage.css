@@ -1,8 +1,9 @@
 .page {
     /* width: 100vw; */
-    height: 100vh;
+    /* height: 100vh; */
     position: relative;
-    top: 110vh;
+    /* top: 110vh; */
+    top: 0;
     left: 0;
     padding-left: var(--page-pad);
     padding-right: var(--page-pad);
